@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -7,7 +8,6 @@
       "sslPort": 0
     }
   },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
@@ -31,10 +31,16 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/api/alive",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "http://localhost:5000",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
       },
       "distributionName": ""
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/alive",
+      "publishAllPorts": true
     }
   }
 }
