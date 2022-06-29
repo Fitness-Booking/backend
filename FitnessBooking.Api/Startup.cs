@@ -88,7 +88,7 @@ namespace FitnessBooking.Api
             services
                 .AddDbContext<FitnessBookingContext>(options => options
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(Configuration.GetConnectionString("BloggingDatabase"),
+                    .UseSqlServer(Configuration["ConnectionStrings:BloggingDatabase"],
                         optionsBuilder =>
                             optionsBuilder
                                 .EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
