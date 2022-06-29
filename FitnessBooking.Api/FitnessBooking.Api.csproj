@@ -1,27 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <UserSecretsId>4a9aa3e4-36ca-4b0a-94c6-331b70ce71c6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.1.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Azure.Identity" Version="1.6.0" />
-    <PackageReference Include="FluentValidation" Version="10.0.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.24" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
   </ItemGroup>
 
   <ItemGroup>
