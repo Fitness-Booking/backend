@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FitnessBooking.Api
@@ -83,12 +84,15 @@ namespace FitnessBooking.Api
                 };
                 services.AddCors();
             });
+            var logCreator = LoggerFactory.Create(builder => builder.AddConsole());
 
+            var logger = logCreator.CreateLogger<Startup>();
+            logger.LogInformation(Configuration.GetConnectionString("SqlServer"));
             // Add DB Context here
             services
                 .AddDbContext<FitnessBookingContext>(options => options
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(Configuration["ConnectionStrings:BloggingDatabase"],
+                    .UseSqlServer(Configuration["SqlServer"],
                         optionsBuilder =>
                             optionsBuilder
                                 .EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
