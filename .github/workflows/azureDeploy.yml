@@ -1,8 +1,14 @@
 name: Сборка и развертывание приложения .NET Core в веб-приложение FitnessBooking
-on:
+on: 
   push:
     branches:
     - main
+  workflow_dispatch:
+    inputs:
+      pussy:
+        description: 'Pussy in boots' 
+        required: true
+  
 env:
   AZURE_WEBAPP_NAME: FitnessBooking
   AZURE_WEBAPP_PACKAGE_PATH: FitnessBooking.Api\published
