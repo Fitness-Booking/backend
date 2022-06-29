@@ -21,9 +21,9 @@ namespace FitnessBooking.Core.Models
 
         public bool IsAppreciateToRequest(GetGymRequest other)
         {
-            return (string.IsNullOrEmpty(other.Name) || Name == other.Name)
-                   && (string.IsNullOrEmpty(other.Location) || Location == other.Location)
-                   && (other.SectionRequest == null ||
+            return  (other.Name?.Equals(Name)??true) &&
+                    (other.Location?.Equals(Location) ?? true) &&
+                    (other.SectionRequest == null ||
                        Sections.All(section => section.IsAppreciateToRequest(other.SectionRequest)));
         }
 

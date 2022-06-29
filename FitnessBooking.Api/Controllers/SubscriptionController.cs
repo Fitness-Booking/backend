@@ -56,9 +56,8 @@ namespace FitnessBooking.Api.Controllers
             return Json(answer);
         }
         [HttpGet]
-        public IActionResult GetUserSubscriptions(int? id, int? userId, int? visitorScheduleId)
+        public IActionResult GetUserSubscriptions(GetVisitorScheduleRequest request)
         {
-            var request = new GetVisitorScheduleRequest(id, userId, visitorScheduleId);
             var answer =  _visitorScheduleManager.Get(request);
 
             if (answer == null)

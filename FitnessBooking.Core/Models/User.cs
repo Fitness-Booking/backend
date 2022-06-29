@@ -5,7 +5,8 @@ namespace FitnessBooking.Core.Models
 {
     public class User
     {
-        [Key] public int Id { get; set; }
+        [Key] 
+        public int Id { get; set; }
 
         public int RoleId { get; set; }
         public string Email { get; set; }
@@ -15,10 +16,10 @@ namespace FitnessBooking.Core.Models
 
         public bool IsAppreciateToRequest(GetUserRequest request)
         {
-            return Id == request.Id &&
+            return (request.Id?.Equals(Id) ?? true) &&
                    (request.Email?.Equals(Email) ?? true) &&
                    (request.Name?.Equals(Name) ?? true) &&
-                   request.RoleId == RoleId;
+                   (request.RoleId?.Equals(RoleId) ?? true);
         }
     }
 }

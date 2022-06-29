@@ -54,10 +54,8 @@ namespace FitnessBooking.Api.Controllers
             return Json(response);
         }
         [HttpGet]
-        public IActionResult Get(int? id, int? roleId, string name, string email)
+        public IActionResult Get(GetUserRequest request)
         {
-            var request = new GetUserRequest(id, roleId, email, name);
-
             var answer = _userManager.Get(request);
             if(answer == null)
             {
