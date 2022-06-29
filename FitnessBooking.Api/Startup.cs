@@ -84,15 +84,12 @@ namespace FitnessBooking.Api
                 };
                 services.AddCors();
             });
-            var logCreator = LoggerFactory.Create(builder => builder.AddConsole());
-
-            var logger = logCreator.CreateLogger<Startup>();
-            logger.LogInformation(Configuration.GetConnectionString("SqlServer"));
+            
             // Add DB Context here
             services
                 .AddDbContext<FitnessBookingContext>(options => options
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(Configuration["SqlServer"],
+                    .UseSqlServer(Configuration.GetConnectionString("SqlServer"),
                         optionsBuilder =>
                             optionsBuilder
                                 .EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
