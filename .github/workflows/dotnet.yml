@@ -50,5 +50,5 @@ jobs:
         with:
           app-name: 'FitnessBooking'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DD3AF22707144B41A8FC6BE1FDE319DC }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           package: .
