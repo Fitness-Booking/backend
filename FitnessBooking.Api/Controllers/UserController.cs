@@ -16,11 +16,6 @@ namespace FitnessBooking.Api.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPut]
         public IActionResult Register(RegisterUserDto registerUser)
         {

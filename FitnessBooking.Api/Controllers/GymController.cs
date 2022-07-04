@@ -18,12 +18,6 @@ namespace FitnessBooking.Api.Controllers
         {
             _gymManager = gymManager;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         [RoleBasedAuth(Roles.Administrator)]
         public async Task<IActionResult> AddNewGym(NewGymDto newGym)

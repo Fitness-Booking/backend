@@ -17,10 +17,6 @@ namespace FitnessBooking.Api.Controllers
             _coachManager = coachManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpPost]
         // [RoleBasedAuth(allowedRoles: Roles.Administrator)]
