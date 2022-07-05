@@ -43,7 +43,7 @@ namespace FitnessBooking.Business.Managers
 
         public async Task<VisitorScheduleDto> UpdateSubscribe(UpdateVisitorScheduleDto visitorScheduleDto)
         {
-            var visitorSchedule = new VisitorSchedule(visitorScheduleDto);
+            var visitorSchedule = _mapper.Map<VisitorSchedule>(visitorScheduleDto);
 
             var result = await _visitorScheduleRepository.UpdateAsync(visitorSchedule);
 

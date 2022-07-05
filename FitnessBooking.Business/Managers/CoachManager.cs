@@ -27,7 +27,7 @@ namespace FitnessBooking.Business.Managers
 
             coach = await _coachRepository.AddAsync(coach);
 
-            return CoachDto.FromEntityToDto(coach);
+            return _mapper.Map<CoachDto>(coach);
         }
 
         public IEnumerable<CoachDto> GetCoaches(GetCoachRequest request)

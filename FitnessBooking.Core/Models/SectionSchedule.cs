@@ -7,23 +7,6 @@ namespace FitnessBooking.Core.Models
 {
     public class SectionSchedule
     {
-        public SectionSchedule()
-        {
-        }
-
-        public SectionSchedule(SectionScheduleDto sectionSchedule) :
-            this(sectionSchedule.Id, sectionSchedule.SectionId, sectionSchedule.StartHour, sectionSchedule.EndHour)
-        {
-        }
-
-        public SectionSchedule(int id, int sectionId, TimeSpan? startHour, TimeSpan? endHour)
-        {
-            Id = id;
-            SectionId = sectionId;
-            StartHour = startHour;
-            EndHour = endHour;
-        }
-
         [Key] public int Id { get; set; }
 
         public int SectionId { get; set; }
