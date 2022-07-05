@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FitnessBooking.Core.Enums;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
@@ -13,19 +14,23 @@ namespace FitnessBooking.Business.Managers
     public class VisitorScheduleManager : IVisitorScheduleManager
     {
         private readonly IVisitorScheduleRepository _visitorScheduleRepository;
+        private readonly IMapper _mapper;
 
-        public VisitorScheduleManager(IVisitorScheduleRepository visitorScheduleRepository)
+        public VisitorScheduleManager(IVisitorScheduleRepository visitorScheduleRepository, IMapper mapper)
         {
             _visitorScheduleRepository = visitorScheduleRepository;
+            _mapper = mapper;
         }
 
         public async Task<VisitorScheduleDto> Subscribe(NewVisitorScheduleDto visitorScheduleDto)
         {
-            var visitorSchedule = new VisitorSchedule(visitorScheduleDto);
+            var visitorSchedule = _mapper.Map<VisitorSchedule>(visitorScheduleDto);
+
             visitorSchedule.StatusId = (int) ScheduleStatus.Ordered;
+
             var result = await _visitorScheduleRepository.AddAsync(visitorSchedule);
 
-            return new VisitorScheduleDto(result);
+            return _mapper.Map<VisitorScheduleDto>(result);
         }
 
         public IEnumerable<VisitorScheduleDto> Get(GetVisitorScheduleRequest request)
@@ -33,7 +38,7 @@ namespace FitnessBooking.Business.Managers
             var result =
                 _visitorScheduleRepository.Find(schedule => schedule.IsAppreciateToRequest(request));
 
-            return result.AsEnumerable().Select(item => new VisitorScheduleDto(item));
+            return result.AsEnumerable().Select(_mapper.Map<VisitorScheduleDto>);
         }
 
         public async Task<VisitorScheduleDto> UpdateSubscribe(UpdateVisitorScheduleDto visitorScheduleDto)
@@ -42,16 +47,18 @@ namespace FitnessBooking.Business.Managers
 
             var result = await _visitorScheduleRepository.UpdateAsync(visitorSchedule);
 
-            return new VisitorScheduleDto(result);
+            return _mapper.Map<VisitorScheduleDto>(result);
         }
 
         public async Task<VisitorScheduleDto> UnSubscribe(RemoveVisitorScheduleDto visitorScheduleDto)
         {
-            var visitorSchedule = new VisitorSchedule(visitorScheduleDto);
+            var visitorSchedule = _mapper.Map<VisitorSchedule>(visitorScheduleDto);
+
             visitorSchedule.StatusId = 3;
+
             var result = await _visitorScheduleRepository.UpdateAsync(visitorSchedule);
 
-            return new VisitorScheduleDto(result);
+            return _mapper.Map<VisitorScheduleDto>(result);
         }
     }
 }

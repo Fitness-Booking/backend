@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
@@ -13,18 +14,16 @@ namespace FitnessBooking.Business.Managers
     {
         private readonly ICoachRepository _coachRepository;
 
-        public CoachManager(ICoachRepository coachRepository)
+        private readonly IMapper _mapper;
+        public CoachManager(ICoachRepository coachRepository, IMapper mapper)
         {
             _coachRepository = coachRepository;
+            _mapper = mapper;
         }
 
         public async Task<CoachDto> AddNewCoach(NewCoachDto newCoach)
         {
-            var coach = new Coach
-            {
-                SectionId = newCoach.SectionId,
-                UserId = newCoach.UserId
-            };
+            var coach = _mapper.Map<Coach>(newCoach);
 
             coach = await _coachRepository.AddAsync(coach);
 
@@ -36,7 +35,7 @@ namespace FitnessBooking.Business.Managers
             return _coachRepository
                 .Find(coach => coach.IsAppreciateToRequest(request))
                 .AsEnumerable()
-                .Select(CoachDto.FromEntityToDto);
+                .Select(_mapper.Map<CoachDto>);
         }
 
         public async Task<CoachDto> UpdateCoach(UpdateCoachDto updateCoach)
@@ -49,7 +48,8 @@ namespace FitnessBooking.Business.Managers
 
             coach.SectionId = updateCoach.SectionId;
             coach = await _coachRepository.UpdateAsync(coach);
-            return CoachDto.FromEntityToDto(coach);
+
+            return _mapper.Map<CoachDto>(coach);
         }
     }
 }

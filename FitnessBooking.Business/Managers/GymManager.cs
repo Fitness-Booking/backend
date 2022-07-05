@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
@@ -12,24 +14,21 @@ namespace FitnessBooking.Business.Managers
     public class GymManager : IGymManager
     {
         private readonly IGymRepository _gymRepository;
+        private readonly IMapper _mapper;
 
-        public GymManager(IGymRepository gymRepository)
+        public GymManager(IGymRepository gymRepository, IMapper mapper)
         {
             _gymRepository = gymRepository;
+            _mapper = mapper;
         }
 
         public async Task<GymDto> AddNewGym(NewGymDto newGym)
         {
-            var gym = new Gym
-            {
-                Description = newGym.Description,
-                Location = newGym.Location,
-                Name = newGym.Name
-            };
+            var gym = _mapper.Map<Gym>(newGym); 
 
             var answer = await _gymRepository.AddAsync(gym);
 
-            return new GymDto(answer);
+            return _mapper.Map<GymDto>(answer);
         }
 
         public IEnumerable<GymDto> GetGyms(GetGymRequest request)
@@ -37,7 +36,7 @@ namespace FitnessBooking.Business.Managers
             return _gymRepository
                 .Find(gym => gym.IsAppreciateToRequest(request))
                 .AsEnumerable()
-                .Select(GymDto.FromEntityToDto);
+                .Select(_mapper.Map<GymDto>);
         }
 
         public async Task<GymDto> UpdateGym(UpdateGymDto updateGym)
@@ -55,7 +54,7 @@ namespace FitnessBooking.Business.Managers
 
             var answer = await _gymRepository.UpdateAsync(gym);
 
-            return new GymDto(answer);
+            return _mapper.Map<GymDto>(answer);
         }
     }
 }

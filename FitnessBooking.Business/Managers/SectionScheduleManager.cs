@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
@@ -13,22 +14,21 @@ namespace FitnessBooking.Business.Managers
     public class SectionScheduleManager : ISectionScheduleManager
     {
         private readonly ISectionScheduleRepository _sectionScheduleRepository;
+        private readonly IMapper _mapper;
 
-        public SectionScheduleManager(ISectionScheduleRepository sectionScheduleRepository)
+        public SectionScheduleManager(ISectionScheduleRepository sectionScheduleRepository, IMapper mapper)
         {
             _sectionScheduleRepository = sectionScheduleRepository;
+            _mapper = mapper;
         }
 
         public async Task<SectionScheduleDto> AddNewSectionSchedule(NewSectionScheduleDto newSectionSchedule)
         {
-            var sectionSchedule = new SectionSchedule
-            {
-                EndHour = TimeSpan.FromSeconds(newSectionSchedule.EndHour),
-                SectionId = newSectionSchedule.SectionId,
-                StartHour = TimeSpan.FromSeconds(newSectionSchedule.StartHour)
-            };
+            var sectionSchedule = _mapper.Map<SectionSchedule>(newSectionSchedule);
+
             var result = await _sectionScheduleRepository.AddAsync(sectionSchedule);
-            return new SectionScheduleDto(result);
+
+            return _mapper.Map<SectionScheduleDto>(result);
         }
 
         public IEnumerable<SectionScheduleDto> GetSectionSchedules(GetSectionScheduleRequest request)
@@ -36,13 +36,13 @@ namespace FitnessBooking.Business.Managers
             return _sectionScheduleRepository
                 .Find(section => section.IsAppreciateToRequest(request))
                 .AsEnumerable()
-                .Select(section => new SectionScheduleDto(section));
+                .Select(_mapper.Map<SectionScheduleDto>);
         }
 
         public async Task<SectionScheduleDto> UpdateSectionSchedule(UpdateSectionScheduleDto updateSectionSchedule)
         {
-            var sectionSchedule = _sectionScheduleRepository.GetAll()
-                .FirstOrDefault(gym => gym.Id == updateSectionSchedule.Id);
+            var sectionSchedule = _sectionScheduleRepository.GetEntityById(updateSectionSchedule.Id);
+
             if (sectionSchedule == null)
             {
                 return null;
@@ -53,7 +53,8 @@ namespace FitnessBooking.Business.Managers
             sectionSchedule.SectionId = updateSectionSchedule.SectionId;
 
             var result = await _sectionScheduleRepository.UpdateAsync(sectionSchedule);
-            return new SectionScheduleDto(result);
+
+            return _mapper.Map<SectionScheduleDto>(result);
         }
     }
 }

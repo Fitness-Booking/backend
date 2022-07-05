@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using Autofac;
 using FitnessBooking.Api.Extensions;
+using FitnessBooking.Api.Helpers;
 using FitnessBooking.Core.Models;
 using FitnessBooking.Core.Validators;
 using FitnessBooking.Data.Models;
@@ -128,6 +129,7 @@ namespace FitnessBooking.Api
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
+            services.AddAutoMapper(AssemblyHelper.GetSolutionAssemblies());
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

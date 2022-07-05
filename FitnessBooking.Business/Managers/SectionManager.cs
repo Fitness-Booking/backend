@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
@@ -12,29 +13,27 @@ namespace FitnessBooking.Business.Managers
     public class SectionManager : ISectionManager
     {
         private readonly ISectionRepository _sectionRepository;
+        private readonly IMapper _mapper;
 
-        public SectionManager(ISectionRepository sectionRepository)
+        public SectionManager(ISectionRepository sectionRepository, IMapper mapper)
         {
             _sectionRepository = sectionRepository;
+            _mapper = mapper;
         }
 
         public async Task<SectionDto> AddNewSection(NewSectionDto newSection)
         {
-            var section = new Section
-            {
-                Name = newSection.Name,
-                GymId = newSection.GymId,
-                TypeId = newSection.TypeId,
-            };
+            var section = _mapper.Map<Section>(newSection);
 
             var answer = await _sectionRepository.AddAsync(section);
 
-            return new SectionDto(answer);
+            return _mapper.Map<SectionDto>(answer);
         }
 
         public async Task<SectionDto> UpdateSection(UpdateSectionDto updateSection)
         {
             var section = _sectionRepository.GetEntityById(updateSection.Id);
+
             if (section == null)
             {
                 return null;
@@ -46,7 +45,7 @@ namespace FitnessBooking.Business.Managers
 
             var answer = await _sectionRepository.UpdateAsync(section);
 
-            return new SectionDto(answer);
+            return _mapper.Map<SectionDto>(answer);
         }
 
         public IEnumerable<SectionDto> GetSections(GetSectionRequest request)
@@ -54,7 +53,7 @@ namespace FitnessBooking.Business.Managers
             return _sectionRepository
                 .Find(section => section.IsAppreciateToRequest(request))
                 .AsEnumerable()
-                .Select(section => new SectionDto(section));
+                .Select(_mapper.Map<SectionDto>);
         }
     }
 }
