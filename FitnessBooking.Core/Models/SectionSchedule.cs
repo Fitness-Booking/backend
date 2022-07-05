@@ -1,7 +1,6 @@
-﻿using System;
+﻿using FitnessBooking.Core.Models.Requests;
+using System;
 using System.ComponentModel.DataAnnotations;
-using FitnessBooking.Core.Models.Dto.SectionSchedule;
-using FitnessBooking.Core.Models.Requests;
 
 namespace FitnessBooking.Core.Models
 {

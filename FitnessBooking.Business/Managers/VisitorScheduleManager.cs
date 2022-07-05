@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FitnessBooking.Core.Enums;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
 using FitnessBooking.Core.Models.Dto.VisitorSchedule;
 using FitnessBooking.Core.Models.Requests;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Business.Managers
 {
@@ -26,7 +26,7 @@ namespace FitnessBooking.Business.Managers
         {
             var visitorSchedule = _mapper.Map<VisitorSchedule>(visitorScheduleDto);
 
-            visitorSchedule.StatusId = (int) ScheduleStatus.Ordered;
+            visitorSchedule.StatusId = (int)ScheduleStatus.Ordered;
 
             var result = await _visitorScheduleRepository.AddAsync(visitorSchedule);
 

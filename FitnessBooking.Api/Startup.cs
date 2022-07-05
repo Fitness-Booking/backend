@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Autofac;
+﻿using Autofac;
 using FitnessBooking.Api.Extensions;
 using FitnessBooking.Api.Helpers;
 using FitnessBooking.Core.Models;
@@ -18,9 +13,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 
 namespace FitnessBooking.Api
 {
@@ -89,7 +88,7 @@ namespace FitnessBooking.Api
                 };
                 services.AddCors();
             });
-            
+
             // Add DB Context here
             services
                 .AddDbContext<FitnessBookingContext>(options => options

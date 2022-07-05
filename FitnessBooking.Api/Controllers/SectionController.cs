@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using FitnessBooking.Api.Attributes;
+﻿using FitnessBooking.Api.Attributes;
 using FitnessBooking.Core.Enums;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Models.Dto.Section;
 using FitnessBooking.Core.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Api.Controllers
 {
@@ -20,7 +20,7 @@ namespace FitnessBooking.Api.Controllers
         }
 
         [HttpPost]
-      //[RoleBasedAuth(allowedRoles: Roles.Administrator)]
+        //[RoleBasedAuth(allowedRoles: Roles.Administrator)]
         public async Task<IActionResult> AddNewSection(NewSectionDto newSection)
         {
             var answer = await _sectionManager.AddNewSection(newSection);

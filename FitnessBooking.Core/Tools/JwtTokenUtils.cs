@@ -1,11 +1,11 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using FitnessBooking.Core.Interfaces.Singletons;
+﻿using FitnessBooking.Core.Interfaces.Singletons;
 using FitnessBooking.Core.Models.Dto.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace FitnessBooking.Core.Tools
 {

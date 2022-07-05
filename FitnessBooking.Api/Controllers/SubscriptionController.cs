@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using FitnessBooking.Core.Interfaces.Managers;
+﻿using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Models.Dto.VisitorSchedule;
 using FitnessBooking.Core.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Api.Controllers
 {
@@ -45,7 +45,7 @@ namespace FitnessBooking.Api.Controllers
 
         [HttpPut]
         [Route("updateSubscribe")]
-        public async Task<IActionResult> UpdateSubscribeAsync(UpdateVisitorScheduleDto  updateVisitorSchedule)
+        public async Task<IActionResult> UpdateSubscribeAsync(UpdateVisitorScheduleDto updateVisitorSchedule)
         {
             var answer = await _visitorScheduleManager.UpdateSubscribe(updateVisitorSchedule);
 
@@ -58,7 +58,7 @@ namespace FitnessBooking.Api.Controllers
         [HttpGet]
         public IActionResult GetUserSubscriptions(GetVisitorScheduleRequest request)
         {
-            var answer =  _visitorScheduleManager.Get(request);
+            var answer = _visitorScheduleManager.Get(request);
 
             if (answer == null)
             {

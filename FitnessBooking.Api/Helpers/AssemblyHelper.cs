@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac.Extensions.DependencyInjection;
 using FitnessBooking.Business.Infrastructure;
+using System.Reflection;
 
 namespace FitnessBooking.Api.Helpers
 {

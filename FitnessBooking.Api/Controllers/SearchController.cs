@@ -16,7 +16,7 @@ namespace FitnessBooking.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetGymsAndSection(GetGymRequest  request)
+        public IActionResult GetGymsAndSection(GetGymRequest request)
         {
             var gyms = _gymManager.GetGyms(request);
 

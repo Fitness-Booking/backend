@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FitnessBooking.Core.Models.Requests;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using FitnessBooking.Core.Models.Requests;
 
 namespace FitnessBooking.Core.Models
 {
@@ -36,9 +36,17 @@ namespace FitnessBooking.Core.Models
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Section) obj);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((Section)obj);
         }
 
         public override int GetHashCode()

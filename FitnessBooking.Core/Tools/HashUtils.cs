@@ -1,7 +1,7 @@
-﻿using System;
+﻿using FitnessBooking.Core.Interfaces.Singletons;
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using FitnessBooking.Core.Interfaces.Singletons;
 
 namespace FitnessBooking.Core.Tools
 {

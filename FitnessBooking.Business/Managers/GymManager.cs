@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
 using FitnessBooking.Core.Models;
 using FitnessBooking.Core.Models.Dto.Gym;
 using FitnessBooking.Core.Models.Requests;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Business.Managers
 {
@@ -24,7 +23,7 @@ namespace FitnessBooking.Business.Managers
 
         public async Task<GymDto> AddNewGym(NewGymDto newGym)
         {
-            var gym = _mapper.Map<Gym>(newGym); 
+            var gym = _mapper.Map<Gym>(newGym);
 
             var answer = await _gymRepository.AddAsync(gym);
 

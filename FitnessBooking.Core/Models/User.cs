@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FitnessBooking.Core.Models.Requests;
+﻿using FitnessBooking.Core.Models.Requests;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessBooking.Core.Models
 {
     public class User
     {
-        [Key] 
+        [Key]
         public int Id { get; set; }
 
         public int RoleId { get; set; }

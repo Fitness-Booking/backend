@@ -52,7 +52,7 @@ namespace FitnessBooking.Api.Controllers
         public IActionResult Get(GetUserRequest request)
         {
             var answer = _userManager.Get(request);
-            if(answer == null)
+            if (answer == null)
             {
                 return BadRequest();
             }

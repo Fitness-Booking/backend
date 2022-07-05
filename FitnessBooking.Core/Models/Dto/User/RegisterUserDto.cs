@@ -8,4 +8,4 @@
         public string RepeatPassword { get; set; }
         public int RoleId { get; set; }
     }
-}   
+}

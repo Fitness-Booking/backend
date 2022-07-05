@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using FitnessBooking.Core.Interfaces.Managers;
+﻿using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Models.Dto.Coach;
 using FitnessBooking.Core.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Api.Controllers
 {

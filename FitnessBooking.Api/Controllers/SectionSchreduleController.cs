@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using FitnessBooking.Api.Attributes;
+﻿using FitnessBooking.Api.Attributes;
 using FitnessBooking.Core.Enums;
 using FitnessBooking.Core.Interfaces.Managers;
 using FitnessBooking.Core.Models.Dto.SectionSchedule;
 using FitnessBooking.Core.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace FitnessBooking.Api.Controllers
 {
