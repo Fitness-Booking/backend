@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Tests\Controllers\**" />
+    <Compile Remove="Tests\Managers\**" />
+    <Compile Remove="Tests\Tools\**" />
+    <EmbeddedResource Remove="Tests\Controllers\**" />
+    <EmbeddedResource Remove="Tests\Managers\**" />
+    <EmbeddedResource Remove="Tests\Tools\**" />
+    <None Remove="Tests\Controllers\**" />
+    <None Remove="Tests\Managers\**" />
+    <None Remove="Tests\Tools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.17.0" />
     <PackageReference Include="AutoMoq" Version="2.0.0" />
@@ -34,6 +46,10 @@
     <ProjectReference Include="..\FitnessBooking.Business\FitnessBooking.Business.csproj" />
     <ProjectReference Include="..\FitnessBooking.Core\FitnessBooking.Core.csproj" />
     <ProjectReference Include="..\FitnessBooking.Data\FitnessBooking.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tests\" />
   </ItemGroup>
 
 </Project>

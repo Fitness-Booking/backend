@@ -36,4 +36,8 @@
     <ProjectReference Include="..\FitnessBooking.Data\FitnessBooking.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Unit\" />
+  </ItemGroup>
+
 </Project>
