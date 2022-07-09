@@ -17,5 +17,9 @@ namespace FitnessBooking.Data.Models
         public FitnessBookingContext(DbContextOptions<FitnessBookingContext> options) : base(options)
         {
         }
+
+        public FitnessBookingContext(DbContextOptions options) : base(options)
+        {
+        }
     }
 }
