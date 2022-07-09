@@ -2,6 +2,8 @@
 using AutoMoq;
 using FitnessBooking.Business.Managers;
 using FitnessBooking.Core.Interfaces.Repositories;
+using FitnessBooking.Core.Models.Dto.Gym;
+using FitnessBooking.Core.Models.Requests;
 using Moq;
 using System;
 using System.Threading.Tasks;

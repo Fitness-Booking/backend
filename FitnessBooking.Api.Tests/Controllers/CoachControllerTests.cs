@@ -6,22 +6,31 @@ using Moq;
 using System;
 using System.Threading.Tasks;
 using Xunit;
-
+using AutoFixture;
 namespace FitnessBooking.Api.Tests.Controllers
 {
     public class CoachControllerTests
     {
+        private Mock<ICoachManager> coachManager;
+        private CoachController coachController;
+        private Fixture _fixture;
+        public CoachControllerTests()
+        {
+            coachManager = new Mock<ICoachManager>();
+            
+            _fixture = new Fixture();
+        }
         [Fact]
         public async Task AddNewCoach_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var mocker = new AutoMoqer();
-            var coachController = mocker.Create<CoachController>();
-            NewCoachDto newCoach = null;
+            coachManager.Setup(manager => manager.AddNewCoach(It.IsAny<NewCoachDto>()))
+                .ReturnsAsync(Mock.Of<CoachDto>());
 
+            coachController = new CoachController(coachManager.Object);
+            
             // Act
-            var result = await coachController.AddNewCoach(
-                newCoach);
+            var result = await coachController.AddNewCoach(Mock.Of<NewCoachDto>());
 
             // Assert
             Assert.True(false);
